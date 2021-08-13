@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .colr{
+            background-color: yellow;
+        }
+    </style>
+
+    <script>
+
+
+    </script>
+
+</head>
+
+<body>
+
+    <table border="1">
+        <tr id="colr">
+            <td>Biryani</td>
+            <td>150</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" name="Biryani" type="checkbox" /></td>
+        </tr>
+        <tr id="colr">
+            <td>Jalfrezi</td>
+            <td>300</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr id="colr">
+            <td>White Karahi</td>
+            <td>1400</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr id="colr">
+            <td>Daal Maash</td>
+            <td>130</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr id="colr">
+            <td>Paasta</td>
+            <td>450</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr >
+        <tr id="colr">
+            <td>Salad</td>
+            <td>50</td>
+            <td><input value="0"  type="number" /></td>
+            <td><input class="dish"  type="checkbox" /></td>
+        </tr>
+        <tr id="colr">
+            <td>Raita</td>
+            <td>30</td>
+            <td><input value="0" id="mufta" type="number" /></td>
+            <td><input class="dish" id="adds" type="checkbox" /></td>
+        </tr>
+        <tr id="colr">
+            <td>Chai</td>
+            <td>30</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td><button onclick="calculateBill()">Calculate Bill</button></td>
+            <td colspan="3">
+                <b>Total Bill</b>
+                <span id="totalBill"></span>
+                <b>Discount</b>
+                <span id="discountBox"></span>
+                <b>GST</b>
+                <span id="gstBox"></span>
+                <b>Net Bill</b>
+                <span id="netBillBox"></span>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+
+
+        function calculateBill() {
+
+            let dishes = document.getElementsByClassName('dish');
+
+            // console.log(dishes);
+
+            let bill = 0;
+            let discount = 0;
+            let borders;
+            for (let dish of dishes) {
+                borders = dish.parentNode.parentNode;
+                 
+                if (dish.checked) {
+
+                    //add color calss
+                    
+                    borders.classList = "colr";
+                 
+                   // console.log (borders);
+
+                    let price = dish.parentNode.previousElementSibling.previousElementSibling.innerText;
+                    let qty = dish.parentNode.previousElementSibling.firstChild.value;
+                    let bir = dish.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+
+                    if (bir == "Biryani"){
+                        adds.checked = true;
+                        mufta.value = dish.parentNode.previousElementSibling.firstChild.value;
+                    }
+
+                    bill += price * qty;
+                    
+                }
+                else{
+                    borders.classList.remove("colr");
+                }
+                
+            }
+            
+            let netBill = bill;
+
+            
+            if (bill > 1200) {
+                discount = bill * 0.10;
+                netBill = bill - discount;
+            }
+
+            totalBill.innerText = bill;
+            discountBox.innerText = discount;
+            
+            let gst = 0.17;
+            let gstBill = netBill*gst;
+            gstBox.innerText = parseInt(gstBill);
+            netBillBox.innerText = netBill + gstBill;
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+
+    </style>
+
+    <script>
+
+
+    </script>
+
+</head>
+
+<body>
+
+    <table border="1">
+        <tr>
+            <td>Biryani</td>
+            <td>150</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Jalfrezi</td>
+            <td>300</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr>
+            <td>White Karahi</td>
+            <td>1400</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+
+        <tr>
+            <td>Daal Maash</td>
+            <td>130</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Paasta</td>
+            <td>450</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Salad</td>
+            <td>50</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Raita</td>
+            <td>30</td>
+            <td><input value="0" type="number" /></td>
+            <td><input class="dish" type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Chai</td>
+            <td>30</td>
+            <td>
+                <input value="0" type="number" />
+            </td>
+            <td id="some">
+                <input class="dish" type="checkbox" />
+            </td>
+        </tr>
+        <tr>
+            <td><button onclick="calculateBill()">Calculate Bill</button></td>
+            <td colspan="3">
+                <b>Total Bill</b>
+                <span id="totalBill"></span>
+                <b>Discount</b>
+                <span id="discountBox"></span>
+                <b>Net Bill</b>
+                <span id="netBillBox"></span>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+
+
+        function calculateBill() {
+
+            let dishes = document.getElementsByClassName('dish');
+
+            // console.log(dishes);
+
+            let bill = 0;
+            let discount = 0;
+            
+            for (let dish of dishes) {
+                
+                if (dish.checked) {
+                    
+                    let price = dish.parentNode.previousElementSibling.previousElementSibling.innerText;
+                    let qty = dish.parentNode.previousElementSibling.firstChild.value;
+                    
+                    bill += price * qty;
+                    
+                }
+                
+            }
+            
+            let netBill = bill;
+
+            
+            if (bill > 1200) {
+                discount = bill * 0.10;
+                netBill = bill - discount;
+            }
+
+            totalBill.innerText = bill;
+            discountBox.innerText = discount;
+            netBillBox.innerText = netBill;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
